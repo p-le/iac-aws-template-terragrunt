@@ -1,10 +1,7 @@
-name: Prepare & Update Infrastructure
+name: Terragrunt Apply
 
-on:
-  push:
-    branches:
-    - main
-  pull_request:
+# Default: Manually trigger. Please change to other events
+on: workflow_dispatch
 
 jobs:
   apply:
@@ -19,7 +16,6 @@ jobs:
         working-directory: ./src
 
     steps:
-
       # Checkout the repository to the GitHub Actions runner
       - name: Checkout
         uses: actions/checkout@v2

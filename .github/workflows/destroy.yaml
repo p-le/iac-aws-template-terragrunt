@@ -1,5 +1,6 @@
-name: Destroy Infrastructure
+name: Terragrunt Destroy
 
+# Default: Manually trigger. Please change to other events
 on: workflow_dispatch
 
 jobs:
