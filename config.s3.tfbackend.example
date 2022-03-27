@@ -1,3 +1,0 @@
-bucket = "<s3-bucket-name>"
-key    = "<prefix>"
-region = "<s3-bucket-region>"
