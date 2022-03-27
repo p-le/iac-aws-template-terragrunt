@@ -8,7 +8,7 @@ ARG USER_GID=$USER_UID
 ARG TERRAGRUNT_VERSION=v0.36.6
 
 RUN apt-get update \
-  && apt-get install -y wget \
+  && apt-get install -y wget ca-certificates \
   && rm -rf /var/lib/apt/lists/*
 
 # Create the user, update folder permissions
