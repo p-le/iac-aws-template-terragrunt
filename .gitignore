@@ -34,5 +34,9 @@ terraform.rc
 
 # Ingore files, folders
 .env
-config.s3.tfbackend
 .ssh
+
+# Terragrunt
+terragrunt.iml
+.terragrunt-cache
+terragrunt
