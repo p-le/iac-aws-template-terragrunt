@@ -1,4 +1,6 @@
 #!/bin/bash
+# Install GitHub CLI aand then authorize
+# We use GitHub CLI to manage GitHub Action Secrets and so on
 
 echo "-- Install GitHub CLI"
 curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg

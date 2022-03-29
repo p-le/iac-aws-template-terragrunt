@@ -1,4 +1,9 @@
 #!/bin/bash
+# Set GitHub Actions Secrets to be able to run GitHub Actions Workflow
+# Required Files:
+# -  .env
+# -  infrastructure-live/common_vars.yaml
+# Please check .example files and create
 
 if [ -f ".env" ]; then
     echo "Set GitHub Action Secrets from .env"

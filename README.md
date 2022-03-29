@@ -20,13 +20,20 @@ Using VS Code Remote Containers.
 1. Update Terraform Code in `modules`
 2. Set commond variables: `environments/common_vars.yaml`. Copy/Paste from `environments/common_vars.yaml.example`
 3. Execute Terragrunt commands
+
 ```
 cd environments/demo
 terragrunt run-all plan
 terragrunt run-all apply
 ```
 
-# GitHub Actions Workflows
+**MY NOTES:**
 
-- Run `./scripts/setup.sh` to install GitHub CLI and authorize
-- Run `./scripts/set_secrets.sh` to register new GitHub Actions Secrets by reading `.env` f
+- `modules` folder: To make this template simple to setup, I've used local Terraform modules. You can create another GitHub Repositories as Terraform Modules and refer to them
+- `infrastructure-live/demo` folder: This is template's temporary folder. Generally it should be environment name: `staging`, `production`, `canary`, `qa`, `production-canary`
+- `infrastructure-live/common_vars.yaml`: this file's content will change depends on the person who use this repository. so I've ignore it in `.gitignore`. Same as `terraform.tfvars`
+
+# How to Use GitHub Actions Workflows
+
+- Run `./scripts/setup.sh` to install GitHub CLI and authorize. We use GitHub CLI to manage GitHub Action Secrets
+- Run `./scripts/set_secrets.sh` to register GitHub Actions Secrets by reading `.env`, `infrastructure-live/common_vars.yaml`

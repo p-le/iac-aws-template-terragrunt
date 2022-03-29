@@ -43,7 +43,7 @@ jobs:
           terragrunt --version
           terraform --version
 
-      - name: Retrieve common_vars.yaml from Secrets
+      - name: Decode/Retrieve common_vars.yaml from Secrets
         env:
           COMMON_VARS_YAML: ${{ secrets.COMMON_VARS_YAML }}
         run: |
