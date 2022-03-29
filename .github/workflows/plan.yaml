@@ -43,6 +43,12 @@ jobs:
           terragrunt --version
           terraform --version
 
+      - name: Retrieve common_vars.yaml from Secrets
+        env:
+          COMMON_VARS_YAML: ${{ secrets.COMMON_VARS_YAML }}
+        run: |
+          echo $COMMON_VARS_YAML | base64 --decode > common_vars.yaml
+
       - name: Validate Terraform Modules
         run: |
           terragrunt run-all validate
