@@ -36,3 +36,8 @@ jobs:
           brew install tfenv tgenv
           tfenv install
           tgswitch
+
+      - name: Check Versions
+        run: |
+          terragrunt --version
+          terraform --version
