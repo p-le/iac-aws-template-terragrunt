@@ -35,7 +35,6 @@ jobs:
       - name: Install Terraform and Terragrunt
         run: |
           brew install tfenv warrensbox/tap/tgswitch
-          brew install tfenv tgenv
           tfenv install
           tgswitch
 
