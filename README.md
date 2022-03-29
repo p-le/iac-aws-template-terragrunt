@@ -37,3 +37,9 @@ terragrunt run-all apply
 
 - Run `./scripts/setup.sh` to install GitHub CLI and authorize. We use GitHub CLI to manage GitHub Action Secrets
 - Run `./scripts/set_secrets.sh` to register GitHub Actions Secrets by reading `.env`, `infrastructure-live/common_vars.yaml`
+
+| Workflow     | Description                                                 |
+| ------------ | ----------------------------------------------------------- |
+| plan.yaml    | Run Terragrunt validate & plan to confirm Terraform Modules |
+| apply.yaml   | Apply Infrastructure changes without approval               |
+| destroy.yaml | Destroy Infrastructure without approval                     |
