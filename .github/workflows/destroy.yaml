@@ -51,4 +51,4 @@ jobs:
 
       - name: Destroy
         run: |
-          terragrunt run-all destroy --auto-aprove
+          terragrunt run-all destroy -auto-approve
