@@ -50,3 +50,7 @@ jobs:
       - name: Validate Terraform Modules
         run: |
           terragrunt run-all validate
+
+      - name: Prepare Terraform Plan
+        run: |
+          terragrunt run-all plan
