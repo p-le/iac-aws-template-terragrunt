@@ -30,8 +30,8 @@ terragrunt run-all apply
 **MY NOTES:**
 
 - `modules` folder: To make this template simple to setup, I've used local Terraform modules. You can create another GitHub Repositories as Terraform Modules and refer to them
-- `infrastructure-live/demo` folder: This is template's temporary folder. Generally it should be environment name: `staging`, `production`, `canary`, `qa`, `production-canary`
-- `infrastructure-live/common_vars.yaml`: this file's content will change depends on the person who use this repository. so I've ignore it in `.gitignore`. Same as `terraform.tfvars`
+- `infrastructure-live/demo` folder: This is template's temporary folder. Generally it should be environment name: `staging`, `production`, `canary`, `qa`, `production-canary` and so on.
+- `infrastructure-live/common_vars.yaml`: this file's content will change depends on the person who use this repository. so I've ignore it in `.gitignore`. Same as `terraform.tfvars` and `.env`
 
 # How to Use GitHub Actions Workflows
 

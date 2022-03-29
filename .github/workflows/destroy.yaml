@@ -1,48 +1,54 @@
 name: Terragrunt Destroy
 
-# Default: Manually trigger. Please change to other events
-on: workflow_dispatch
-
+# Default: Manually trigger. Please change to other events if needed
+on:
+  workflow_dispatch:
+    inputs:
+      working_dir:
+        description: "Target Working Dir to execute Terragrunt"
+        required: true
+        default: "warning"
+        type: choice
+        options:
+          - demo
 jobs:
   destroy:
-    name: Terraform
+    name: Terragrunt
     runs-on: ubuntu-latest
-    environment: development
+    environment: ${{ github.event.inputs.working_dir }}
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
 
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
       run:
         shell: bash
-        working-directory: ./src
+        working-directory: infrastructure-live/${{ github.event.inputs.working_dir }}
 
     steps:
       # Checkout the repository to the GitHub Actions runner
       - name: Checkout
         uses: actions/checkout@v2
 
-      # Install the latest version of AWS CLI and setup Access Key and Secret Access Key
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ap-northeast-1
+      - name: Install Terraform and Terragrunt
+        run: |
+          brew install tfenv warrensbox/tap/tgswitch
+          brew install tfenv tgenv
+          tfenv install
+          tgswitch
 
-      # Install the latest version of Terraform CLI
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v1
-        with:
-          cli_config_credentials_token: ${{ secrets.TERRAFORM_CLOUD_API_TOKEN }}
+      - name: Check Versions
+        run: |
+          terragrunt --version
+          terraform --version
 
-      # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
-      - name: Terraform Init
-        run: terraform init
+      - name: Decode/Retrieve common_vars.yaml from Secrets
+        run: |
+          echo "${{ secrets.COMMON_VARS_YAML }}" | base64 --decode > common_vars.yaml
+        working-directory: ./infrastructure-live
 
-      # Create input variables from Environment Secret
-      # NOTE: Avoid terraform.tfvars
-      - name: Setup Terraform variables
-        run: cp terraform.tfvars.example terraform.auto.tfvars
-
-      # Destroy deployed Infrastructure on AWS
-      - name: Terraform destroy
-        run: terraform destroy -auto-approve
+      - name: Destroy
+        run: |
+          terragrunt run-all destroy --auto-aprove
