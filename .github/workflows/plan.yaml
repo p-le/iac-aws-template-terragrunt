@@ -44,10 +44,8 @@ jobs:
           terraform --version
 
       - name: Decode/Retrieve common_vars.yaml from Secrets
-        env:
-          COMMON_VARS_YAML: ${{ secrets.COMMON_VARS_YAML }}
         run: |
-          echo $COMMON_VARS_YAML | base64 --decode > common_vars.yaml
+          echo ${{ secrets.COMMON_VARS_YAML }} | base64 --decode > common_vars.yaml
 
       - name: Validate Terraform Modules
         run: |
