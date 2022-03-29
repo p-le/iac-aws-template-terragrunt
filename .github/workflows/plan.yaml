@@ -12,7 +12,7 @@ on:
         options:
           - demo
 jobs:
-  plan:
+  plan_validate:
     name: Terragrunt
     runs-on: ubuntu-latest
     environment: development
