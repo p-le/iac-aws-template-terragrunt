@@ -53,4 +53,4 @@ jobs:
       # Only acceptable for learning purpose
       - name: Apply
         run: |
-          terragrunt run-all apply --auto-aprove
+          terragrunt run-all apply -auto-approve
