@@ -1,6 +1,6 @@
 name: Terragrunt Plan & Validate
 
-# Default: Manually trigger. Please change to other events
+# Default: Manually trigger. Please change to other events if needed
 on:
   workflow_dispatch:
     inputs:
@@ -15,10 +15,11 @@ jobs:
   plan_validate:
     name: Terragrunt
     runs-on: ubuntu-latest
-    environment: development
+    environment: ${{ github.event.inputs.working_dir }}
     env:
-      TERRAFORM_VERSION: latest
-
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
       run:
@@ -41,3 +42,7 @@ jobs:
         run: |
           terragrunt --version
           terraform --version
+
+      - name: Validate Terraform Modules
+        run: |
+          terragrunt run-all validate
