@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
     inputs:
       working_dir:
-        description: "Target Working Dir to execute Terragrunt Commands"
+        description: "Target Working Dir to execute Terragrunt"
         required: true
         default: "warning"
         type: choice
