@@ -25,6 +25,7 @@ jobs:
     defaults:
       run:
         shell: bash
+        working-directory: infrastructure-live/${{ github.event.inputs.working_dir }}
 
     steps:
       # Checkout the repository to the GitHub Actions runner
@@ -51,9 +52,7 @@ jobs:
       - name: Validate Terraform Modules
         run: |
           terragrunt run-all validate
-        working-directory: ./infrastructure-live/${{ github.event.inputs.working_dir }}
 
       - name: Prepare Terraform Plan
         run: |
           terragrunt run-all plan
-        working-directory: ./infrastructure-live/${{ github.event.inputs.working_dir }}
