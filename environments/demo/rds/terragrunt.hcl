@@ -3,5 +3,5 @@ include "root" {
 }
 
 terraform {
-  source = "${path.module}/../../modules//rds"
+  source = "./../../../modules//rds"
 }

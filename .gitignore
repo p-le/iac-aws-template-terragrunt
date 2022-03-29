@@ -40,3 +40,4 @@ terraform.rc
 terragrunt.iml
 .terragrunt-cache
 terragrunt
+common_vars.yaml

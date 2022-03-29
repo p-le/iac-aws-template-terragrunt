@@ -15,13 +15,15 @@ Using VS Code Remote Containers.
 - Generate new `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`
 - Create File: `.env` based on `.env.example`
 
-## Step 3: Execute Terragrunt Commands
+## Step 3: Develop
 
+1. Update Terraform Code in `modules`
+2. Set commond variables: `environments/common_vars.yaml`. Copy/Paste from `environments/common_vars.yaml.example`
+3. Execute Terragrunt commands
 ```
-terragrunt init
-terragrunt plan
-terragrunt apply
-terragrunt destroy
+cd environments/demo
+terragrunt run-all plan
+terragrunt run-all apply
 ```
 
 # GitHub Actions Workflows
