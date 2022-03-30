@@ -31,6 +31,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      # Use .terraform-version, .terragrunt-version files to fix version
       - name: Install Terraform and Terragrunt
         run: |
           brew install tfenv warrensbox/tap/tgswitch
