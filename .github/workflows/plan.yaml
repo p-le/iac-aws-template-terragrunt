@@ -4,18 +4,17 @@ name: Terragrunt Plan & Validate
 on:
   workflow_dispatch:
     inputs:
-      working_dir:
-        description: "Target Working Dir to execute Terragrunt"
+      environment:
+        description: "Set Environment to execute Terraspace"
         required: true
-        default: "warning"
         type: choice
-        options:
+        options: # Add more environment if needed
           - demo
 jobs:
   plan_validate:
     name: Terragrunt
     runs-on: ubuntu-latest
-    environment: ${{ github.event.inputs.working_dir }}
+    environment: ${{ github.event.inputs.environment }}
     env:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -25,7 +24,7 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: infrastructure-live/${{ github.event.inputs.working_dir }}
+        working-directory: infrastructure-live/${{ github.event.inputs.environment }}
 
     steps:
       # Checkout the repository to the GitHub Actions runner
