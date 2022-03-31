@@ -11,7 +11,7 @@ Using VS Code Remote Containers.
 ## Step 2: Prepare AWS credentials
 
 - Create new IAM User
-- Grant some IAM Roles. For examples: `IAMFullAccess`, `EC2FullAccess`, `S3FullAccess`
+- Grant some IAM Roles. For examples: `IAMFullAccess`, `EC2FullAccess`, `S3FullAccess` or `AdministratorAccess`
 - Generate new `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`
 - Create File: `.env` based on `.env.example`
 
