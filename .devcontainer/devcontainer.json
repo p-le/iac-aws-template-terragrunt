@@ -13,7 +13,7 @@
   "settings": {},
 
   // Add the IDs of extensions you want installed when the container is created.
-  "extensions": [],
+  "extensions": ["hashicorp.terraform"],
 
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
   // "forwardPorts": [],
@@ -23,7 +23,7 @@
 
   // Uncomment when using a ptrace-based debugger like C++, Go, and Rust
   // "runArgs": [ "--cap-add=SYS_PTRACE", "--security-opt", "seccomp=unconfined" ],
-  "runArgs": ["--env-file=.env"],
+  "runArgs": ["--env-file=.env", "--rm", "--name=iac-aws-template-terragrunt"],
 
   // Uncomment to use the Docker CLI from inside the container. See https://aka.ms/vscode-remote/samples/docker-from-docker.
   // "mounts": [ "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind" ],
